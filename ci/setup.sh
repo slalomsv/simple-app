@@ -14,6 +14,7 @@ echo "$INSTANCE_ID" > ec2_instance_id
 
 echo ">>> Grabbing public ip"
 while [ -z $PUBLIC_IP ]; do
+    aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .NetworkInterfaces[0].Association.PublicIp'
     PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .NetworkInterfaces[0].Association.PublicIp'`
     echo ">>> IP not ready. Trying again in 10"
     sleep 10

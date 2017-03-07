@@ -13,5 +13,12 @@ echo ">>> EC2 instance id: $INSTANCE_ID"
 echo "$INSTANCE_ID" > ec2_instance_id
 
 echo ">>> Grabbing public ip"
-PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .NetworkInterfaces[0].Association.PublicIp'`
+while [ -z $PUBLIC_IP ]; do
+    PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .NetworkInterfaces[0].Association.PublicIp'`
+    echo ">>> IP not ready. Trying again in 10"
+    sleep 10
+done    
 echo ">>> public ip: $PUBLIC_IP"
+
+ssh -i id_rsa -o "StrictHostKeyChecking no" ubuntu@$PUBLIC_IP "uname -a"
+

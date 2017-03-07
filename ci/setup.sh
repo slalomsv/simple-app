@@ -9,7 +9,7 @@ aws ec2 import-key-pair --key-name "$AWS_KEY_NAME" --public-key-material "$(cat 
 
 echo ">>> Spinning up EC2 instance"
 INSTANCE_ID=`aws ec2 run-instances --image-id ami-156be775 --key-name "$AWS_KEY_NAME" --count 1 --instance-type t2.micro --security-group-ids sg-7d482705 --subnet-id subnet-ea2b1fb2 | jq -r ".Instances[0].InstanceId"`
-echo ">>> EC2 instance id: $INSTANCE_ID"
+echo "EC2 instance id: $INSTANCE_ID"
 echo "$INSTANCE_ID" > ec2_instance_id
 
 echo ">>> Grabbing public ip"
@@ -19,7 +19,7 @@ while [ -z $PUBLIC_IP ]; do
   sleep 10
   PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
 done    
-echo ">>> Public IP: $PUBLIC_IP"
+echo "Public IP: $PUBLIC_IP"
 echo "$PUBLIC_IP" > ec2_public_ip
 
 STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`

@@ -7,7 +7,7 @@ env:
 before_install:
   - sudo pip install awscli
   - aws help
-  - ssh-keygen -t rsa -C "user0001@slalom.com" -b 4096 -f id_rsa -N ''
+  - ssh-keygen -t rsa -C 'user0001@slalom.com'' -b 4096 -f id_rsa -N ''
   - aws iam upload-ssh-public-key --user-name User0001 --ssh-public-key-body $(cat id_rsa.pub)
 install:
   - npm install

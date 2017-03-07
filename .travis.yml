@@ -6,4 +6,4 @@ install:
 script:
   - curl http://canihazip.com/s
   - npm run lint
-  - npm run test
+  - node app && npm run test

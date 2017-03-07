@@ -15,19 +15,19 @@ echo ">>> EC2 instance id: $INSTANCE_ID"
 echo "$INSTANCE_ID" > ec2_instance_id
 
 echo ">>> Grabbing public ip"
-PUBLIC_IP=`aws ec2 describe-instances | jq ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
+PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
 while [ -z $PUBLIC_IP ]; do
   echo ">>> Public IP not associated yet. Trying again in 10s"
   sleep 10
-  PUBLIC_IP=`aws ec2 describe-instances | jq ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
+  PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
 done    
 echo ">>> Public IP: $PUBLIC_IP"
 
-STATUS=`aws ec2 describe-instances | jq ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
+STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
 while [ $STATUS != "running" ]; do
   echo ">>> Instance state: $STATUS"
   sleep 10
-  STATUS=`aws ec2 describe-instances | jq ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
+  STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
 done
 echo ">>> Instance state: $STATUS"
 

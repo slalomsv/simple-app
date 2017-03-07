@@ -1,10 +1,9 @@
 language: node_js
 node_js:
   - "6.9"
+sudo: required
 env:
-  - AWS_ACCESS_KEY_ID=foo
-  - AWS_SECRET_ACCESS_KEY=bar
-  - AWS_DEFAULT_REGION=us-west-2
+  - AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar AWS_DEFAULT_REGION=us-west-2
 before_install:
   - pip install awscli
   - aws help

@@ -20,6 +20,7 @@ while [ -z $PUBLIC_IP ]; do
   PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
 done    
 echo ">>> Public IP: $PUBLIC_IP"
+echo "$PUBLIC_IP" > ec2_public_ip
 
 STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
 while [ $STATUS != "running" ]; do

@@ -13,11 +13,12 @@ echo ">>> EC2 instance id: $INSTANCE_ID"
 echo "$INSTANCE_ID" > ec2_instance_id
 
 echo ">>> Grabbing public ip"
+PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .PublicIpAddress'`
 while [ -z $PUBLIC_IP ]; do
-    aws ec2 describe-instances | jq '.'
-    PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .NetworkInterfaces[0].Association.PublicIp'`
     echo ">>> IP not ready. Trying again in 10"
     sleep 10
+    aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .PublicIpAddress'
+    PUBLIC_IP=`aws ec2 describe-instances | jq '.Reservations[].Instances[] | select(.InstanceId=="$INSTANCE_ID") | .PublicIpAddress'`
 done    
 echo ">>> public ip: $PUBLIC_IP"
 

@@ -8,3 +8,6 @@ INSTANCE_ID=`cat ec2_instance_id`
 #echo ">>> Terminating EC2 instance $INSTANCE_ID"
 aws ec2 terminate-instances --instance-ids "$INSTANCE_ID"
 
+if [ $? == 0 ]; then
+  echo "Teardown was successful"
+fi

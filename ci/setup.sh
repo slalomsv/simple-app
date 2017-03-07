@@ -32,3 +32,7 @@ echo ">>> Instance state: $STATUS"
 
 ssh -i id_rsa -o "StrictHostKeyChecking no" ubuntu@$PUBLIC_IP 'uname -a'
 
+if [ $? == 0 ]; then
+  echo "Environment setup was successful"
+fi
+

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+AWS_KEY_NAME=MyKeyPair
 echo ">>> Deleting key pair"
 aws ec2 delete-key-pair --key-name "$AWS_KEY_NAME"
 

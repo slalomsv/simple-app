@@ -4,7 +4,7 @@ echo ">>> Generating SSH key pair"
 ssh-keygen -t rsa -C "user0001@slalom.com" -b 4096 -f id_rsa -N ""
 
 echo ">>> Importing public key into AWS"
-export AWS_KEY_NAME=MyKeyPair
+AWS_KEY_NAME=MyKeyPair
 aws ec2 import-key-pair --key-name "$AWS_KEY_NAME" --public-key-material "$(cat id_rsa.pub)"
 
 echo ">>> Spinning up EC2 instance"

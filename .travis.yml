@@ -3,12 +3,14 @@ node_js:
   - "6.9"
 sudo: required
 env:
-  - AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar AWS_DEFAULT_REGION=us-west-2
+  global:
+    - AWS_ACCESS_KEY_ID=AKIAJ5RHRO2T2SRL2J4A
+    - AWS_DEFAULT_REGION=us-west-2
+    - secure: "Op79Zf0PoJeXyv0JED2eWWSq8GU2WFsn+uTbeC+d4KevfIag7nnyEDlPq4xkjvMzo3SPamhOOP190QiKHu8LHbEcCmIw0SPUSoB87NZnr4t4Dd34+xckd2b4tV1oERsfGrwf1Dw8FXUswdYsR8MigqTBYJiGjF6XkH5v1yePJ6Qe0TbrkFmzsGDmGNqOnVKvfB+1X6gGUpzXi695pSz94e6S3fARJRceApnhcUbkB6wtMm+LPZVZyYHq93B8b16Gev0G0AwL+C+ZTJs23LxPk5wz3B9d8+vZva9t1Irz2JcOGE9mvddgtgk/+S6pLT7bHvoI5GxJUHySpfj/DFTakYd6eVA31HqOXdaF0eTiSrdbmMsR2RWuTjLcZycwPTKBse6B8QjS/tNNIEexJJIvvNSRhpASMAAzfa9pSY18FZrKNkezxOef6xVi5GDA3KeDm87TtG1GbdfLDXExDoHYp4RK6U98HsKVSh/ZS2XWeSij1b8OT+syN85DX5VQhQGT47UXAA6WF3oWWrH17QmkCl3Y7ZFc//HMkWABnMUAZPcR08IE1cb9/Ci9dq1Vl5F+wMkkagKFAes+a2Fuy5RjasJ2z1Rt5jJ3FAPXeEldbAghHxf0ti7l+KOenRc2NzpL1u7IdZGsBAAzpAtYYZNm0oVpxhLoNSORBZXepJPvK6Q="
 before_install:
   - sudo pip install awscli
   - aws help
-  - ssh-keygen -t rsa -C 'user0001@slalom.com' -b 4096 -f id_rsa -N ''
-  - aws iam upload-ssh-public-key --user-name User0001 --ssh-public-key-body $(cat id_rsa.pub)
+  - ./gen_keypair.sh
 install:
   - npm install
 script:

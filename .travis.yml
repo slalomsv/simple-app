@@ -4,6 +4,6 @@ node_js:
 install:
   - npm install
 script:
-  - echo "IP is: $(curl http://canihazip.com/s)"
+  - curl http://canihazip.com/s
   - npm run lint
   - npm run test

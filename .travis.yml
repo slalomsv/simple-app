@@ -4,6 +4,6 @@ node_js:
 install:
   - npm install
 script:
-  - curl http://canihazip.com/s
   - npm run lint
-  - node app && npm run test
+  - node app
+  - npm run test

@@ -36,6 +36,8 @@ echo ">>> Instance state: $STATUS"
 ssh -i id_rsa -o "StrictHostKeyChecking no" ubuntu@$PUBLIC_IP 'uname -a'
 
 if [ $? == 0 ]; then
-  echo "Environment setup was successful"
+  echo "Successfully logged in to EC2 instance. Environment setup was complete."
+else
+  echo "Error while trying to log into EC2 instance. Enivroment may or may not be ready."
 fi
 

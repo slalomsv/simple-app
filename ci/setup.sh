@@ -22,7 +22,7 @@ done
 echo "Public IP: $PUBLIC_IP"
 echo "$PUBLIC_IP" > ec2_public_ip
 
-echo ">>> Waiting for instance to spin up"
+echo ">>> Waiting 30 seconds for instance to spin up"
 sleep 30
 
 STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`

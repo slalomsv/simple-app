@@ -16,9 +16,9 @@ Hit http://localhost:3000/
 
 ## CI
 
-We're using TravisCI; the configuration is defined in `.travis.yml`.
+We're using TravisCI; the configuration is defined in `.travis.yml`. The following is a description of the sequence of activities.
 
-1. Environment variables
+1. Set environment variables
     - AWS access keys - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY will probably need to change depending on the AWS account being used
 2. Setup (before_install)
     - Install AWS CLI

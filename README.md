@@ -19,7 +19,7 @@ Hit http://localhost:3000/
 We're using TravisCI; the configuration is defined in `.travis.yml`. The following is a description of the sequence of activities.
 
 1. Set environment variables
-    - AWS access keys - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY will need to change depending on the AWS account being used
+    - AWS access keys - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` will need to change depending on the AWS account being used
 2. Setup (before_install)
     - Install AWS CLI
     - EC2 - `setup.sh` will spin up a new instance and attempt to verify the SSH connection

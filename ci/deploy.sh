@@ -12,17 +12,17 @@ if [ $? != 0 ]; then
 fi
 
 echo ">>> Transfering package to EC2 instance"
-scp "../$PACKAGE_NAME" ubuntu@$PUBLIC_IP
+scp "../$PACKAGE_NAME" ubuntu@$PUBLIC_IP:~
+ssh ubuntu@$PUBLIC_IP 'ls -lart'
+
 
 if [ $? != 0 ]; then
   echo "Transfer failed. Exiting"
   exit 1
 fi
 
-echo ">>> Remove and recreate simple-app directory"
+#echo ">>> Remove and recreate simple-app directory"
 #ssh ubuntu@$PUBLIC_IP 'rm -rf simple-app && mkdir simple-app'
-ssh ubuntu@$PUBLIC_IP 'pwd'
-ssh ubuntu@$PUBLIC_IP 'ls -lart'
 
 #echo ">>> Extract package contents"
 #ssh ubuntu@$PUBLIC_IP 'tar -xvjf "$PACKAGE_NAME" -C simple-app'

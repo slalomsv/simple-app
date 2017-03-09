@@ -25,5 +25,5 @@ echo ">>> Remove and recreate simple-app directory"
 ssh ubuntu@$PUBLIC_IP 'rm -rf simple-app && mkdir simple-app'
 
 echo ">>> Extract package contents"
-ssh ubuntu@$PUBLIC_IP "tar -xvjf $PACKAGE_NAME -C simple-app"
+ssh ubuntu@$PUBLIC_IP "tar -xjf $PACKAGE_NAME -C simple-app"
 

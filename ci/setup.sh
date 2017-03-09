@@ -22,6 +22,14 @@ done
 echo "Public IP: $PUBLIC_IP"
 echo "$PUBLIC_IP" > ec2_public_ip
 
+echo ">>> Create SSH config file"
+cat <<EOF > ~/.ssh/config
+Host ec2
+  HostName $PUBLIC_IP
+  IdentityFile id_rsa
+  StrictHostKeyChecking no
+EOF
+
 echo ">>> Waiting 30 seconds for instance to spin up"
 sleep 30
 
@@ -34,7 +42,7 @@ done
 echo ">>> Instance state: $STATUS"
 
 echo ">>> Attempting to SSH into the instance"
-ssh -i id_rsa -o "StrictHostKeyChecking=no" ubuntu@$PUBLIC_IP 'uname -a'
+ssh ubuntu@$PUBLIC_IP 'uname -a'
 
 if [ $? == 0 ]; then
   echo "Successfully logged in to EC2 instance. Environment setup is complete."

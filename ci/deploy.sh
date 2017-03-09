@@ -12,7 +12,7 @@ if [ $? != 0 ]; then
 fi
 
 echo ">>> Transfering package to EC2 instance"
-scp -i id_rsa -o "StrictHostKeyChecking=no" "../$PACKAGE_NAME" ubuntu@$PUBLIC_IP
+scp "../$PACKAGE_NAME" ubuntu@$PUBLIC_IP
 
 if [ $? != 0 ]; then
   echo "Transfer failed. Exiting"
@@ -20,8 +20,10 @@ if [ $? != 0 ]; then
 fi
 
 echo ">>> Remove and recreate simple-app directory"
-ssh -i id_rsa -o "StrictHostKeyChecking=no" ubuntu@$PUBLIC_IP 'rm -rf simple-app && mkdir simple-app'
+#ssh ubuntu@$PUBLIC_IP 'rm -rf simple-app && mkdir simple-app'
+ssh ubuntu@$PUBLIC_IP 'pwd'
+ssh ubuntu@$PUBLIC_IP 'ls -lart'
 
-echo ">>> Extract package contents"
-ssh -i id_rsa -o "StrictHostKeyChecking=no" ubuntu@$PUBLIC_IP 'tar -xvjf "$PACKAGE_NAME" -C simple-app'
+#echo ">>> Extract package contents"
+#ssh ubuntu@$PUBLIC_IP 'tar -xvjf "$PACKAGE_NAME" -C simple-app'
 

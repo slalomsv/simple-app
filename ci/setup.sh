@@ -24,11 +24,11 @@ echo "$PUBLIC_IP" > ec2_public_ip
 
 echo ">>> Create SSH config file"
 cat <<EOF > ~/.ssh/config
-Host ec2
-  HostName $PUBLIC_IP
+Host $PUBLIC_IP
   IdentityFile id_rsa
   StrictHostKeyChecking no
 EOF
+cat ~/.ssh/config
 
 echo ">>> Waiting 30 seconds for instance to spin up"
 sleep 30

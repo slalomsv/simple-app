@@ -33,6 +33,7 @@ while [ $STATUS != "running" ]; do
 done
 echo ">>> Instance state: $STATUS"
 
+echo ">>> Attempting to SSH into the instance"
 ssh -i id_rsa -o "StrictHostKeyChecking=no" ubuntu@$PUBLIC_IP 'uname -a'
 
 if [ $? == 0 ]; then

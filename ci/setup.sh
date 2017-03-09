@@ -42,11 +42,16 @@ done
 echo ">>> Instance state: $STATUS"
 
 echo ">>> Attempting to SSH into the instance"
-ssh ubuntu@$PUBLIC_IP 'uname -a'
-
-if [ $? == 0 ]; then
-  echo "Successfully logged in to EC2 instance. Environment setup is complete."
-else
-  echo "Error while trying to log into EC2 instance. Enivroment may or may not be ready."
-fi
+COUNT=0
+while true; do
+  (( COUNT=COUNT+1 ))
+  ssh ubuntu@$PUBLIC_IP 'exit'
+  if [ $? == 0 ]; then
+    break
+  else
+    echo "Attempt $COUNT: Failed"
+  fi
+  sleep 10
+done
+echo "Attempt $COUNT: Successful"
 

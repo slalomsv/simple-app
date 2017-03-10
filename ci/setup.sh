@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./ci/helpers.sh
 
 echo ">>> Generating SSH key pair"
 ssh-keygen -t rsa -C "user0001@slalom.com" -b 4096 -f id_rsa -N ""

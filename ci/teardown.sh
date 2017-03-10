@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./ci/helpers.sh
 
 AWS_KEY_NAME=$(getval ci_vars AWS_KEY_NAME)
 echo ">>> Deleting key pair $AWS_KEY_NAME"

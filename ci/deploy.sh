@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./ci/helpers.sh
 
 PACKAGE_NAME="simple-app.tar.bz2"
 PUBLIC_IP=$(getval ci_vars PUBLIC_IP)

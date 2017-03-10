@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./ci/helpers.sh
 
 PUBLIC_IP=$(getval ci_vars PUBLIC_IP)
 

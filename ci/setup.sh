@@ -36,6 +36,7 @@ cat ~/.ssh/config
 echo ">>> Waiting 30 seconds for instance to spin up"
 sleep 30
 
+# Warning: this will wait forever until the instance is in a "running" state
 STATUS=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .State.Name"`
 while [ $STATUS != "running" ]; do
   echo ">>> Instance state: $STATUS"
@@ -44,6 +45,7 @@ while [ $STATUS != "running" ]; do
 done
 echo ">>> Instance state: $STATUS"
 
+# Warning: this will retry the SSH connection forever until success
 echo ">>> Attempting to SSH into the instance"
 COUNT=0
 while true; do

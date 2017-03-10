@@ -1,7 +1,10 @@
 # Simple App
 
 ## What is this?
-This app is for demo purposes only. It consists of a frontend in node.js (v6.x) that displays data from a table from a MySQL backend.
+This app is for demo purposes only. It consists of a frontend in node.js (v6.x) that displays data from a table from a MySQL backend (AWS RDS). The intent is to showcase
+
+- CI pipeline using TravisCI
+- Auto-provisioning (and teardown) of AWS EC2 instances via AWS CLI
 
 ## Usage
 
@@ -27,7 +30,7 @@ We're using TravisCI; the configuration is defined in `.travis.yml`. The followi
 3. Testing (script)
     - Lint - `lint.sh`, which runs `npm run lint`
     - Unit tests - INCOMPLETE
-4. Deploy
+4. Deploy (script)
     - Deploy app to EC2 - package app (tar.bz2), SCP to remote instance and extract
     - Integration tests on the EC2 instance - `test.sh`, which runs `npm run test`
 5. Teardown (after_script)

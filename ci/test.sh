@@ -1,6 +1,8 @@
 #!/bin/bash
 
-PUBLIC_IP=`cat ec2_public_ip`
+source ./helpers.sh
+
+PUBLIC_IP=$(getval ci_vars PUBLIC_IP)
 
 echo ">>> Starting server"
 ssh ubuntu@$PUBLIC_IP 'cd ~/simple-app && pm2 start app.js'

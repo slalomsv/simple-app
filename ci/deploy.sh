@@ -1,7 +1,9 @@
 #!/bin/bash
 
+source ./helpers.sh
+
 PACKAGE_NAME="simple-app.tar.bz2"
-PUBLIC_IP=`cat ec2_public_ip`
+PUBLIC_IP=$(getval ci_vars PUBLIC_IP)
 
 echo ">>> Building deploy package $PACKAGE_NAME"
 tar -cjf "../$PACKAGE_NAME" * --exclude=id_rsa

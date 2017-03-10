@@ -28,7 +28,7 @@ We're using TravisCI; the configuration is defined in `.travis.yml`. The followi
     - Lint - `lint.sh`, which runs `npm run lint`
     - Unit tests - INCOMPLETE
 4. Deploy
-    - Deploy app to EC2 - INCOMPLETE, but EC2 instance already has a version of the app deployed
+    - Deploy app to EC2 - package app (tar.bz2), SCP to remote instance and extract
     - Integration tests on the EC2 instance - `test.sh`, which runs `npm run test`
 5. Teardown (after_script)
     - `teardown.sh`: remove SSH keypair and terminate EC2 instance

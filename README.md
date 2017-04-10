@@ -35,3 +35,4 @@ We're using TravisCI; the configuration is defined in `.travis.yml`. The followi
     - Integration tests on the EC2 instance - `test.sh`, which runs `npm run test`
 5. Teardown (after_script)
     - `teardown.sh`: remove SSH keypair and terminate EC2 instance
+

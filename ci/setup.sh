@@ -11,7 +11,7 @@ echo "AWS_KEY_NAME=$AWS_KEY_NAME" >> ci_vars
 aws ec2 import-key-pair --key-name "$AWS_KEY_NAME" --public-key-material "$(cat id_rsa.pub)"
 
 echo ">>> Spinning up EC2 instance"
-INSTANCE_ID=`aws ec2 run-instances --image-id ami-156be775 --key-name "$AWS_KEY_NAME" --count 1 --instance-type t2.micro --security-group-ids sg-402a1238 --subnet-id subnet-ea2b1fb2 | jq -r ".Instances[0].InstanceId"`
+INSTANCE_ID=`aws ec2 run-instances --image-id ami-156be775 --key-name "$AWS_KEY_NAME" --count 1 --instance-type t2.micro --security-group-ids sg-7d482705 --subnet-id subnet-ea2b1fb2 | jq -r ".Instances[0].InstanceId"`
 echo "EC2 instance id: $INSTANCE_ID"
 echo "INSTANCE_ID=$INSTANCE_ID" >> ci_vars
 

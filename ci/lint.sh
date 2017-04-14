@@ -1,7 +1,6 @@
 #!/bin/bash
-set -e
-
 source ./ci/helpers.sh
+set -e
 
 echo ">>> Running eslint"
 npm run lint

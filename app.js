@@ -6,7 +6,7 @@ var app = express();
 var dbconn = mysql.createConnection({
   "host": "testdb.cuicpsblup3n.us-west-2.rds.amazonaws.com",
   "user": "admin",
-  "password": "password123"
+  "password": "slalom123"
 });
 
 dbconn.query("USE testdb");

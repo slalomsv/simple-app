@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 # getval <file> <key>
 # 
 # getval retrieves the value for a particular key from a file where

@@ -17,11 +17,13 @@ echo "INSTANCE_ID=$INSTANCE_ID" >> ci_vars
 
 echo ">>> Grabbing public ip"
 PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
+set +e
 while [ -z $PUBLIC_IP ]; do
   echo ">>> Public IP not associated yet. Trying again in 10s"
   sleep 10
   PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
-done    
+done
+set -e
 echo "Public IP: $PUBLIC_IP"
 echo "PUBLIC_IP=$PUBLIC_IP" >> ci_vars
 
@@ -48,6 +50,7 @@ echo ">>> Instance state: $STATUS"
 # Warning: this will retry the SSH connection forever until success
 echo ">>> Attempting to SSH into the instance"
 COUNT=0
+set -e
 while true; do
   (( COUNT=COUNT+1 ))
   ssh ubuntu@$PUBLIC_IP 'exit'
@@ -59,4 +62,4 @@ while true; do
   sleep 10
 done
 echo "Attempt $COUNT: Successful"
-
+set +e

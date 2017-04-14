@@ -1,6 +1,5 @@
 #!/bin/bash
 source ./ci/helpers.sh
-set -e
 
 PUBLIC_IP=$(getval ci_vars PUBLIC_IP)
 

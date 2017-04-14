@@ -7,12 +7,13 @@ env:
     - AWS_ACCESS_KEY_ID=AKIAJ5RHRO2T2SRL2J4A
     - AWS_DEFAULT_REGION=us-west-2
     - secure: "pHNwxAEMML7VVN6rW+dABW0TMIAZA7W39gAabyf7jB+3LxulYURVbzB44ex6FRhjijOh3GzGkDPJ+u00jV57LEnB4IlZJdAPdnLvjZKZccPMKEZTttxw3tUs3xdGg5rrUHDPPCL1LtdHHORLPVe5yZl9k4YyfshByD5WZIrcz4DZ4BvEa5BVLmALlR5uXqeavJfAFBYlPo1NBJcS1x6WXXaLP+U9270FdUi7nHQkr8wfI3ykkTu+YtUmku6z9lzJ2T10IA5jtCj2e94TY47e0e68Tj0i468uzBDTn3kDNZD7GsJ91HJbgieaoSbLokvfxoPRZyXrlGpzOXQ+V1ea77GZBRGeRJzMII/dVXtonTl9vt0n2WL744rbYqqr8JqkmXdW4i/GHUPizPbPKqkKte1GROvI5Jm65QKo6D0Xt34a+TMIaTtwFvvennHzHdTPws4pmD1tI9SrORaMp5vynXjzBAkpcEIW3P9lD+zHwOgHkVvxCemNTbgQ0qPZSzdjEVxNJUhCP65EYtczfVHRguX04kb/fDwq4/cuAQ6Y4svCI83BywAmqkCoEur6iYR6OqU2D0DJZStXtrUqwKu7S4HqjaS2HVvjE8vCfTQoyiKyo65ZdcmekeRLUpF77YO3qJEMOKPY1evPRYFK98dBQ8Tp7vGsGHJLhDtv67RUyyw="
-before_install:
+install:
   - sudo pip install awscli
   - ./ci/setup.sh
-script:
+before_script:
   - npm install
   - ./ci/lint.sh
+script:
   - ./ci/deploy.sh
   - ./ci/test.sh
 after_script:

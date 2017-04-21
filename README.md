@@ -3,7 +3,7 @@
 ## What is this?
 This app is for demo purposes only. It consists of a frontend in node.js (v6.x) that displays data from a table from a MySQL backend (AWS RDS). The intent is to showcase
 
-- CI pipeline using TravisCI
+- CI pipeline using [TravisCI](https://www.travis-ci.org/slalomsv/simple-app) 
 - Auto-provisioning (and teardown) of AWS EC2 instances via AWS CLI
 
 ## Usage

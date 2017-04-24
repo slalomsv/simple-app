@@ -18,5 +18,6 @@ script:
   - ./ci/test.sh
 after_failure:
   - ./ci/teardown.sh 
+  
 after_script:
   - ./ci/teardown.sh

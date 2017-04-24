@@ -47,15 +47,20 @@ echo ">>> Instance state: $STATUS"
 
 # Warning: this will retry the SSH connection forever until success
 echo ">>> Attempting to SSH into the instance"
-COUNT=3
+COUNT=0
 while true; do
   (( COUNT=COUNT+1 ))
-  ssh ubuntu@$PUBLIC_IP 'exit'
+  ssh ubuntu@localhost 'exit'
   if [ $? == 0 ]; then
+        echo "Attempt $COUNT: Successful"
     break
   else
-    echo "Attempt $COUNT: Failed"
+  if [ $COUNT == 3 ]; then
+        echo  "Failed $COUNT times: aborting"
+   break
+  else
+        echo "Attempt $COUNT: Failed"
   fi
-  sleep 10
+  fi
+  sleep 2
 done
-echo "Attempt $COUNT: Successful"

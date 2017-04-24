@@ -50,7 +50,7 @@ echo ">>> Attempting to SSH into the instance"
 COUNT=0
 while true; do
   (( COUNT=COUNT+1 ))
-  ssh ubuntu@localhost 'exit'
+  ssh -o StrictHostKeyChecking=no ubuntu@localhost 'exit'
   if [ $? == 0 ]; then
         echo "Attempt $COUNT: Successful"
     break

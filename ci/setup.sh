@@ -15,6 +15,10 @@ INSTANCE_ID=`aws ec2 run-instances --image-id ami-156be775 --key-name "$AWS_KEY_
 echo "EC2 instance id: $INSTANCE_ID"
 echo "INSTANCE_ID=$INSTANCE_ID" >> ci_vars
 
+echo ">>> Create tags"
+aws ec2 create-tags --resources $INSTANCE_ID --tags
+Key=Name,Value=interview-demo Key=Environment,Value=dev
+
 echo ">>> Grabbing public ip"
 PUBLIC_IP=`aws ec2 describe-instances | jq -r ".Reservations[].Instances[] | select(.InstanceId==\"$INSTANCE_ID\") | .PublicIpAddress"`
 while [ -z $PUBLIC_IP ]; do

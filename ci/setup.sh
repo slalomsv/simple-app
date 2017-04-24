@@ -53,11 +53,11 @@ while true; do
   ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@$PUBLIC_IP 'exit'
   if [ $? == 0 ]; then
         echo "Attempt $COUNT: Successful"
-    exit 0 
+    break
   else
   if [ $COUNT == 3 ]; then
         echo  "Failed $COUNT times: aborting"
-   exit 1
+   break
   else
         echo "Attempt $COUNT: Failed"
   fi

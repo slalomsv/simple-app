@@ -65,7 +65,7 @@ while [ $COUNT -le $MAX_COUNT ]; do
   sleep 10
 done
 
-if [ $COUNT -eq $MAX_COUNT ]; then
+if [ $COUNT -gt $MAX_COUNT ]; then
   echo "SSH connection still failing after $MAX_COUNT tries"
   exit 1
 else

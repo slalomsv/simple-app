@@ -49,10 +49,10 @@ while [ $STATUS != "running" ]; do
 done
 echo ">>> Instance state: $STATUS"
 
-# Warning: this will retry the SSH connection forever until success
+# Retry the SSH connection MAX_COUNT times 
 echo ">>> Attempting to SSH into the instance"
 COUNT=0
-MAX_COUNT=3
+MAX_COUNT=5
 while [ $COUNT -le $MAX_COUNT ]; do
   (( COUNT=COUNT+1 ))
   ssh ubuntu@$PUBLIC_IP 'exit'
@@ -65,3 +65,10 @@ while [ $COUNT -le $MAX_COUNT ]; do
   sleep 10
 done
 
+if [ $COUNT -eq $MAX_COUNT ]; then
+  echo "SSH connection still failing after $MAX_COUNT tries"
+  exit 1
+else
+  echo "Connected successfully"
+  exit 0
+fi

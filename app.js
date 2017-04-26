@@ -4,7 +4,7 @@ var mysql = require("mysql");
 var app = express();
 
 var dbconn = mysql.createConnection({
-  "host": "testdb.cuicpsblup3n.us-west-2.rds.amazonaws.com",
+  "host": "localhost",
   "user": "admin",
   "password": "password123"
 });

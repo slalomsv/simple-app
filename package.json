@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -25,12 +27,14 @@
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "pug": "^2.0.0-beta11",
-    "request": "^2.80.0"
+    "request": "^2.80.0",
+    "snyk": "^1.36.2"
   },
   "devDependencies": {
     "eslint": "^3.17.0",
     "eslint-config-standard": "^7.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1"
-  }
+  },
+  "snyk": true
 }
